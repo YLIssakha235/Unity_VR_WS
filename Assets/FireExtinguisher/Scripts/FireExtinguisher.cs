@@ -14,27 +14,28 @@ public class FireExtinguisher : MonoBehaviour
     private readonly object fire;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
         // Récupérer le composant XRGrabInteractable
-        xrGrab = // TODO
+        xrGrab = GetComponent<XRGrabInteractable>();
         // s’enregistrer sur l’événement activated pour activer le FireExtinguisher 
-        // TODO
-
+        xrGrab.activated.AddListener(_ => setActivation(true));
+        xrGrab.deactivated.AddListener(_ => setActivation(false));
 
         // s’enregistrer sur l’événement deactivated pour activer le FireExtinguisher 
-        // TODO
+        setActivation(false);
 
     }
 
     private void setActivation(bool active)
     {
         // Make foam appear / disappear
-        // TODO
+        foamGo.SetActive(active);
 
         // Make collider appear / disappear
-        // TODO
+        colliderGo.SetActive(active);
 
 
     }
@@ -42,11 +43,12 @@ public class FireExtinguisher : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         // find the fire component hit by the FireExtinguisher
-        // TODO
+        Fire fire = other.GetComponent<Fire>();
+
         if (fire != null)
         {
             // Reduce the Fire Health according to the power of the Extinguisher
-            // TODO
+            fire.Health -= power * Time.deltaTime;
         }
     }
 }
