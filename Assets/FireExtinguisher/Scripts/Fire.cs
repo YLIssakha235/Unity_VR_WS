@@ -28,26 +28,33 @@ public class Fire : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // TODO
+        health = maxHealth; 
     }
 
     // Update is called once per frame
     void Update()
     {
-        // TODO
+        if (health > 0 && health < maxHealth)
+        {
+            health += healthIncreasePerSec * Time.deltaTime;
+        }
     }
 
     void UpdateHealth()
     {
         // activate/deactivate gameObject if health > 0
-        // TODO
+        gameObject.SetActive(health > 0);
 
 
         // Gain health if fire is not fully extinguished
-        // TODO
+        if (health > 0 && health < maxHealth)
+        {
+            health += healthIncreasePerSec * Time.deltaTime;
+        }
+        
 
         // Update scale according to Health
-        // TODO
+        transform.localScale = Vector3.one * health * scalePerHealth;
 
     }
 }
