@@ -36,6 +36,13 @@ public class SpectatorMarker : MonoBehaviour
         // Ignore les clics sur l'UI de l'écran de retour (bouton de bascule, etc.).
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
 
+        // Cursor locked (FPS-style look): aim from the crosshair, i.e. the centre of the FlyCam's view.
+        if (Cursor.lockState == CursorLockMode.Locked)
+            screenPos = manager.FlyCam.pixelRect.center;
+
+        // In picture-in-picture mode, only clicks inside the FlyCam's window count.
+        if (!manager.FlyCam.pixelRect.Contains(screenPos)) return;
+
         Ray ray = manager.FlyCam.ScreenPointToRay(screenPos);
         if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, raycastMask, QueryTriggerInteraction.Ignore))
             Place(hit.point + hit.normal * surfaceOffset, hit.normal);

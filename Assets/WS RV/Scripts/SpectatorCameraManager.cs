@@ -71,8 +71,13 @@ public class SpectatorCameraManager : MonoBehaviour
 
         if (active && spawnAtVrHead && !_alreadyPlaced)
         {
-            flyCam.transform.SetPositionAndRotation(vrCamera.transform.position,
+            // Move the whole FlyCam object (the parent holding the FlyCam script),
+            // not the child camera, otherwise it orbits around its parent when turning.
+            Transform rig = flyCam.transform.parent != null ? flyCam.transform.parent : flyCam.transform;
+            rig.SetPositionAndRotation(vrCamera.transform.position,
                 Quaternion.Euler(0f, vrCamera.transform.eulerAngles.y, 0f));
+            if (rig != flyCam.transform)
+                flyCam.transform.localPosition = Vector3.zero;
             _alreadyPlaced = true;
         }
 

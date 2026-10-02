@@ -2636,6 +2636,31 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 711221922}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1046238053 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7704827549310072518, guid: a91963d6cd7aca047826fd5e1cad15bd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1365484542}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1046238057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1046238053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30b63b6d7a2526c40abc4ac2b0f1ab6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensitivity: 2
+  holdRightClick: 1
+  invertY: 0
+  minPitch: -89
+  maxPitch: 89
+  _yaw: 0
+  _pitch: 0
 --- !u!1 &1099027057
 GameObject:
   m_ObjectHideFlags: 0
@@ -3121,6 +3146,31 @@ PrefabInstance:
       propertyPath: m_NormalizedViewPortRect.height
       value: 0.35
       objectReference: {fileID: 0}
+    - target: {fileID: 7704827549310072516, guid: a91963d6cd7aca047826fd5e1cad15bd,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704827549310072516, guid: a91963d6cd7aca047826fd5e1cad15bd,
+        type: 3}
+      propertyPath: RotXSensitivity
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704827549310072516, guid: a91963d6cd7aca047826fd5e1cad15bd,
+        type: 3}
+      propertyPath: RotYSensitivity
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704827549310072516, guid: a91963d6cd7aca047826fd5e1cad15bd,
+        type: 3}
+      propertyPath: MoveXSensitivity
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7704827549310072516, guid: a91963d6cd7aca047826fd5e1cad15bd,
+        type: 3}
+      propertyPath: MoveYSensitivity
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7704827549310072517, guid: a91963d6cd7aca047826fd5e1cad15bd,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3192,6 +3242,10 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 131914060}
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7704827549310072518, guid: a91963d6cd7aca047826fd5e1cad15bd,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1046238057}
     - targetCorrespondingSourceObject: {fileID: 7704827549224607522, guid: a91963d6cd7aca047826fd5e1cad15bd,
         type: 3}
       insertIndex: -1
