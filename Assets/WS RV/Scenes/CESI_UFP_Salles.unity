@@ -124,7 +124,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 2c57a6521acacce448e77174bf533c70, type: 2}
 --- !u!1 &62453570
 GameObject:
   m_ObjectHideFlags: 0
@@ -3223,6 +3223,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: tiago_dual
       objectReference: {fileID: 0}
+    - target: {fileID: 5372547848881105469, guid: c595b7c2249370040a21a967bc16860b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3236,6 +3241,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 396433780289042874, guid: d43eab793ec14e043b3f11a28023b8f3,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1720879721575430266, guid: d43eab793ec14e043b3f11a28023b8f3,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -3315,6 +3325,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8567032765380973967, guid: d43eab793ec14e043b3f11a28023b8f3,
+        type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
