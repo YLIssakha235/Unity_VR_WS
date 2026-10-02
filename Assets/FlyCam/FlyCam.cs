@@ -43,6 +43,17 @@ namespace intervales.utils
         void Start()
         {
             if (inputActions == null) inputActions = GetComponent<PlayerInput>().actions;
+
+            // Private copy of the actions, limited to keyboard + mouse only.
+            // This way the VR controllers (and gamepads) can never move the FlyCam,
+            // and the VR rig's own input actions are not affected.
+            inputActions = Instantiate(inputActions);
+            var devices = new List<InputDevice>();
+            if (Keyboard.current != null) devices.Add(Keyboard.current);
+            if (Mouse.current != null) devices.Add(Mouse.current);
+            inputActions.devices = devices.ToArray();
+            inputActions.Enable();
+
             look = Vector2.zero;
             cam = transform.Find("Camera").gameObject.GetComponent<Camera>();
 
@@ -94,6 +105,11 @@ namespace intervales.utils
             }
         }
 
+        void OnDestroy()
+        {
+            if (inputActions != null) Destroy(inputActions);
+        }
+
         void OnDisable()
         {
             look = Vector2.zero;
@@ -112,9 +128,10 @@ namespace intervales.utils
         #endregion Unity Events
 
         #region own events
-        // Kept for PlayerInput "Send Messages"; Update reads the actions directly anyway.
-        public void OnLook(InputValue value) { look = value.Get<Vector2>(); }
-        public void OnMove(InputValue value) { move = value.Get<Vector2>(); }
+        // Kept for PlayerInput "Send Messages", but ignored on purpose:
+        // PlayerInput also listens to the VR controllers. Update reads the keyboard/mouse-only copy.
+        public void OnLook(InputValue value) { }
+        public void OnMove(InputValue value) { }
         #endregion
     }
 }
