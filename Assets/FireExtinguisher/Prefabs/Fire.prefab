@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6093828206829628745}
   - component: {fileID: 1912635539944949540}
   - component: {fileID: 7744443540323703238}
-  - component: {fileID: -148744414211200784}
   m_Layer: 0
   m_Name: Fire
   m_TagString: Untagged
@@ -4859,22 +4858,6 @@ CapsuleCollider:
   m_Height: 1.793824
   m_Direction: 1
   m_Center: {x: 0, y: 0.6655065, z: 0}
---- !u!114 &-148744414211200784
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 291631950344827098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64126d87586559843a7798909b3024bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  healthIncreasePerSec: 5
-  scalePerHealth: 0.1
-  health: 100
 --- !u!1 &5424047530014888894
 GameObject:
   m_ObjectHideFlags: 0
