@@ -10,6 +10,14 @@ public class FireGrenadeManager : MonoBehaviour
     [Tooltip("Damage dealt to fires (should be high enough to instantly kill it)")]
     [SerializeField] private float extinguishingPower = 100f;
 
+    // ===== ADDED: foam burst settings =====
+    [Header("Foam Burst")]
+    [Tooltip("Prefab with a white Particle System (foam) played at the explosion")]
+    [SerializeField] private GameObject foamBurstPrefab;
+    [Tooltip("Safety: destroy the foam object after this time (seconds)")]
+    [SerializeField] private float foamLifetime = 3f;
+    // ======================================
+
     // Variables from whiteboard
     private bool grenadeActivated = false;
     private bool onCollision = false;
@@ -67,6 +75,10 @@ public class FireGrenadeManager : MonoBehaviour
         if (!grenadeActivated) return;
         grenadeActivated = false;
 
+        // ===== ADDED: foam burst (white particles) =====
+        SpawnFoamBurst(transform.position);
+        // ===============================================
+
         // 1. Find all colliders within the explosion radius
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosionRadius);
 
@@ -84,4 +96,32 @@ public class FireGrenadeManager : MonoBehaviour
         // 3. Destroy the grenade object after it pops
         Destroy(gameObject);
     }
+
+    // ===== ADDED: creates the foam at the explosion position =====
+    private void SpawnFoamBurst(Vector3 position)
+    {
+        if (foamBurstPrefab == null)
+        {
+            Debug.LogWarning("No foam burst prefab assigned on the grenade.");
+            return;
+        }
+
+        // Created as a separate object: it keeps playing after the grenade is destroyed
+        GameObject foam = Instantiate(foamBurstPrefab, position, Quaternion.identity);
+
+        // Make sure the particles play, even if Play On Awake is unchecked
+        ParticleSystem ps = foam.GetComponentInChildren<ParticleSystem>();
+        if (ps != null)
+        {
+            ps.Play(true);
+            // Destroy once all particles are gone
+            float duration = ps.main.duration + ps.main.startLifetime.constantMax;
+            Destroy(foam, Mathf.Max(duration, foamLifetime));
+        }
+        else
+        {
+            Destroy(foam, foamLifetime);
+        }
+    }
+    // =============================================================
 }
