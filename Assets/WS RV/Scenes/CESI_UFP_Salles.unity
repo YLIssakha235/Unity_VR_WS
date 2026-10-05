@@ -2746,7 +2746,7 @@ PrefabInstance:
     - target: {fileID: 6598815579406187037, guid: 18ddb545287c546e19cc77dc9fbb2189,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4951,6 +4951,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8788332080417435086, guid: c2bc2813e393f1040ad5f5af80690e75,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4980,6 +4985,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionRadius: 3
   extinguishingPower: 100
+  foamBurstPrefab: {fileID: 5211042993305808332, guid: 06c7192e2412b2042bab1268adde3570,
+    type: 3}
+  foamLifetime: 3
 --- !u!1001 &535343156928600489
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5166,6 +5174,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1861106466199767481, guid: 521fc737d563c1546a74031589927c12,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1989506189527190497, guid: 521fc737d563c1546a74031589927c12,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -5270,6 +5283,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionRadius: 3
   extinguishingPower: 100
+  foamBurstPrefab: {fileID: 5211042993305808332, guid: 06c7192e2412b2042bab1268adde3570,
+    type: 3}
+  foamLifetime: 3
 --- !u!1001 &2582871520702957112
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5287,6 +5303,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7545573225481150480, guid: bab8fa0fc7954914faf3c56b56185c70,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9166285584612073780, guid: bab8fa0fc7954914faf3c56b56185c70,
         type: 3}
@@ -5367,6 +5388,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosionRadius: 3
   extinguishingPower: 100
+  foamBurstPrefab: {fileID: 5211042993305808332, guid: 06c7192e2412b2042bab1268adde3570,
+    type: 3}
+  foamLifetime: 3
 --- !u!1001 &2782776839892338626
 PrefabInstance:
   m_ObjectHideFlags: 0
