@@ -20,9 +20,11 @@ public class HeadExplosion : MonoBehaviour
     [Tooltip("Drag your HeadExplosion input action here")]
     public InputActionReference fireAction;
 
+    // --- NEW: Safety lock to prevent double-explosions ---
+    private bool hasExploded = false;
+
     private void OnEnable()
     {
-        // Turn on the action and listen for the button press
         if (fireAction != null)
         {
             fireAction.action.Enable();
@@ -32,7 +34,6 @@ public class HeadExplosion : MonoBehaviour
 
     private void OnDisable()
     {
-        // Clean up the listener when the object is destroyed
         if (fireAction != null)
         {
             fireAction.action.performed -= TriggerFire;
@@ -42,6 +43,11 @@ public class HeadExplosion : MonoBehaviour
 
     private void TriggerFire(InputAction.CallbackContext context)
     {
+        // --- NEW: Stop the function if the head already exploded ---
+        if (hasExploded) return;
+
+        hasExploded = true; // Lock it down
+
         // 1. Stop the robot instantly
         if (robotAgent != null)
         {

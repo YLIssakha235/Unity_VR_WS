@@ -1,29 +1,54 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class TiagoRepairManager : MonoBehaviour
 {
     [Header("References")]
     public GameObject robotHead;
-    public Transform neckBone; // Drag torso_lift_link here
     public NavMeshAgent robotAgent;
 
-    // We will trigger this function via the XR Socket Interactor
+    Transform originalParent;
+    Vector3 originalLocalPos;
+    Quaternion originalLocalRot;
+
+    void Awake()
+    {
+        // Captured at startup, before HeadExplosion detaches the head
+        originalParent = robotHead.transform.parent;
+        originalLocalPos = robotHead.transform.localPosition;
+        originalLocalRot = robotHead.transform.localRotation;
+    }
+
+    // Called from the socket's Select Entered event
     public void OnHeadReattached()
     {
-        // 1. Re-parent the head back to the neck structure
-        robotHead.transform.SetParent(neckBone);
+        StartCoroutine(FinishReattach());
+    }
 
-        // 2. Lock the physics so it doesn't flop around
-        robotHead.GetComponent<Rigidbody>().isKinematic = true;
+    IEnumerator FinishReattach()
+    {
+        // Let the socket finish its attach ease-in (0.15s)
+        yield return new WaitForSeconds(0.3f);
 
-        // 3. Optional: Lock the head in place so the player can't rip it off again
-        robotHead.GetComponent<UnityEngine.XR.Interaction.Toolkit.XRGrabInteractable>().enabled = false;
+        // Release the grab first, so it can't touch the Rigidbody afterwards
+        robotHead.GetComponent<XRGrabInteractable>().enabled = false;
+        yield return null;
 
-        // 4. Resume the patrol
+        // Restore the exact original place on the robot
+        var t = robotHead.transform;
+        t.SetParent(originalParent);
+        t.localPosition = originalLocalPos;
+        t.localRotation = originalLocalRot;
+
+        // Set kinematic last
+        var rb = robotHead.GetComponent<Rigidbody>();
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+        rb.isKinematic = true;
+
         if (robotAgent != null)
-        {
             robotAgent.isStopped = false;
-        }
     }
 }
